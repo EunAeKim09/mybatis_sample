@@ -38,9 +38,20 @@ public class Student {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
+	
+	public Student(int studId) {
+		super();
+		this.studId = studId;
+	}
+	
+	
+	
+	public Student() {
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public String toString() {
-		return String.format("Student [studId=%s, name=%s, email=%s, phone=%s, dob=%s]", studId, name, email, phone,
+		return String.format("Student [%s, %s, %s, %s, %s]", studId, name, email, phone,
 				dob);
 	}
 	
