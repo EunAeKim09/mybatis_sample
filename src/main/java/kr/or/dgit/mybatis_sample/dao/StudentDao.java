@@ -10,4 +10,8 @@ public interface StudentDao {
 	List<Student> selectStudentByAllWidthAPI();
 	//insert
 	int insertStudentWidthAPI(Student student);
+	//update
+	int updateStudnetWithAPI(Student student);
+	//delete
+	int deleteStudentWithAPI(int id);
 }
