@@ -13,8 +13,6 @@ import kr.or.dgit.mybatis_sample.util.MyBatisSqlSessionFactory;
 public class StudentService {
 	private static final Log log = LogFactory.getLog(StudentService.class);
 	
-	private String namespace = "kr.or.dgit.mybatis_sample.dao.StudentDao.";
-	
 	public Student findStudentByNo(Student student) {
 		log.debug("selectStudentByNo()");
 		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
@@ -31,20 +29,6 @@ public class StudentService {
 		}
 	}
 	
-	public Student findStudentByNoWidthAPI(Student student) {
-		log.debug("selectStudentByNoWidthAPI()");
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			return sqlSession.selectOne(namespace+"selectStudentByNoWidthAPI", student);
-		}
-	}
-	
-	public List<Student> selectStudentByAllWidthAPI() {
-		log.debug("selectStudentByAllWidthAPI()");
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			return sqlSession.selectList(namespace+"selectStudentByAllWidthAPI");
-		}
-	}
-	
 	public int insertStudent(Student student) {
 		log.debug("insertStudent()");
 		int res = -1;
@@ -56,13 +40,4 @@ public class StudentService {
 		return res;
 	}
 	
-	public int insertStudentWidthAPI(Student student) {
-		log.debug("insertStudentWidthAPI()");
-		int res=-1;
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			res=sqlSession.insert(namespace+"insertStudentWidthAPI", student);
-			sqlSession.commit();
-		}
-		return res;
-	}
 }

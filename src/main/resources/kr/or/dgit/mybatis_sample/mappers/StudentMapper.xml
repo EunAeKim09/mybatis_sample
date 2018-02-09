@@ -30,20 +30,8 @@
 		<!-- SELECT stud_id, name, email, phone FROM students; -->
 	</select>
 	
-	<select id="selectStudentByNoWidthAPI" parameterType="Student" resultType="Student">
-		<include refid="selectSql"/>
-		<include refid="whereSql"/>
-	</select>
-	
-	<select id="selectStudentByAllWidthAPI" parameterType="Student" resultType="Student">
-		<include refid="selectSql"/>
-	</select>
-	
 	<insert id="insertStudent" parameterType="Student">
 		<include refid="insertSql"/>
 	</insert>
 	
-	<insert id="insertStudentWidthAPI" parameterType="Student">
-		<include refid="insertSql"/>
-	</insert>
 </mapper>
