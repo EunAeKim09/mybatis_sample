@@ -43,11 +43,17 @@ public class Student {
 		super();
 		this.studId = studId;
 	}
-	
-	
-	
 	public Student() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Student(int studId, String name, String email,  Date dob, PhoneNumber phone) {
+		super();
+		this.studId = studId;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.dob = dob;
 	}
 	@Override
 	public String toString() {
