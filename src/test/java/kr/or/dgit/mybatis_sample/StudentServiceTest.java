@@ -31,25 +31,7 @@ public class StudentServiceTest {
 	}
 
 	@Test
-	public void test1FindStudentByNo() {
-		Student student = new Student();
-		student.setStudId(1);
-		
-		Student selectStudent = service.findStudentByNo(student);
-		Assert.assertEquals(student.getStudId(), selectStudent.getStudId());
-	}
-	
-	@Test
-	public void test2FindStudentByAll() {
-		List<Student> listStd = service.selectStudentByAll();
-		Assert.assertNotNull(listStd);
-		for(Student std : listStd) {
-			System.out.println(std);
-		}
-	}
-	
-	@Test
-	public void test3FindStudentByNoWidthAPI() {
+	public void test1FindStudentByNoWidthAPI() {
 		Student student = new Student();
 		student.setStudId(1);
 		
@@ -58,7 +40,7 @@ public class StudentServiceTest {
 	}
 	
 	@Test
-	public void test4FindStudentByAllWidthAPI() {
+	public void test2FindStudentByAllWidthAPI() {
 		List<Student> listStd = service.selectStudentByAllWidthAPI();
 		Assert.assertNotNull(listStd);
 		for(Student std : listStd) {
@@ -67,18 +49,7 @@ public class StudentServiceTest {
 	}
 	
 	@Test
-	public void test5insertStudent() {
-		Calendar newDate = GregorianCalendar.getInstance();
-		newDate.set(1990, 2, 28);
-		
-		Student student = 
-				new Student(3, "홍길동3", "lee@test.co.kr", newDate.getTime(), new PhoneNumber("010-1234-1234"));
-		int res = service.insertStudent(student);
-		Assert.assertEquals(1, res);
-	}
-	
-	@Test
-	public void test6insertStudentWidthAPI() {
+	public void test3insertStudentWidthAPI() {
 		Calendar newDate = GregorianCalendar.getInstance();
 		newDate.set(1990, 3, 28);
 		

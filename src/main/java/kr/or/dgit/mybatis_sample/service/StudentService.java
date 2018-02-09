@@ -15,22 +15,6 @@ public class StudentService {
 	
 	private String namespace = "kr.or.dgit.mybatis_sample.dao.StudentDao.";
 	
-	public Student findStudentByNo(Student student) {
-		log.debug("selectStudentByNo()");
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
-			return studentDao.selectStudentByNo(student);
-		}
-	}
-	
-	public List<Student> selectStudentByAll() {
-		log.debug("selectStudentByAll()");
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
-			return studentDao.selectStudentByAll();
-		}
-	}
-	
 	public Student findStudentByNoWidthAPI(Student student) {
 		log.debug("selectStudentByNoWidthAPI()");
 		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
@@ -43,17 +27,6 @@ public class StudentService {
 		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
 			return sqlSession.selectList(namespace+"selectStudentByAllWidthAPI");
 		}
-	}
-	
-	public int insertStudent(Student student) {
-		log.debug("insertStudent()");
-		int res = -1;
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
-			res=studentDao.insertStudent(student);
-			sqlSession.commit();
-		}
-		return res;
 	}
 	
 	public int insertStudentWidthAPI(Student student) {
