@@ -1,33 +1,23 @@
 package kr.or.dgit.mybatis_sample.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.dgit.mybatis_sample.dto.Student;
 
 public interface StudentDao {
-<<<<<<< HEAD
+	//select
 	Student selectStudentByNo(Student student);
-	
 	List<Student> selectStudentByAll();
 	
-	int insertStudent(Student student);
-	
-	int updateStudent(Student student);
-	
-	int deleteStudent(int id);
-=======
-	//select
-	Student selectStudentByNoWidthAPI(Student student);
-	List<Student> selectStudentByAllWidthAPI();
-	//insert
-	int insertStudentWidthAPI(Student student);
-	//update
-	int updateStudnetWithAPI(Student student);
-	//delete
-	int deleteStudentWithAPI(int id);
-	
-
 	List<Student> selectStudentByAllForResultMap();
-	List<Student> selectStudentByAllForResultMapWithApi();
->>>>>>> refs/heads/hotfix_mapResult
+	List<Map<String, Object>> selectStudentByAllForHashMap();
+	
+	//insert
+	int insertStudent(Student student);
+	//update
+	int updateStudent(Student studeent);
+	//delete
+	int deleteStudent(int studId);
+	
 }

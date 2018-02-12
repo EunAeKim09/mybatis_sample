@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.dgit.mybatis_sample.dao.StudentDao">
+<mapper namespace="kr.or.dgit.mybatis_sample_teacher.dao.StudentDao">
 
 	<sql id="selectSql">
 		SELECT stud_id, name, email, phone FROM students
 	</sql>
-	
+
 	<sql id="whereSql">
 		<where>
 			<if test="studId != null">
@@ -13,64 +13,51 @@
 			</if>
 		</where>
 	</sql>
-	
+
+	<select id="selectStudentByNo" parameterType="Student"
+		resultType="Student">
+		<include refid="selectSql" />
+		<include refid="whereSql" />
+		<!-- SELECT stud_id, name, email, phone FROM students where stud_id=#{studId}; -->
+	</select>
+
+	<select id="selectStudentByAll" resultType="Student">
+		<include refid="selectSql" />
+		<!-- SELECT stud_id, name, email, phone FROM students -->
+	</select>
+
+
+	<!-- insert -->
 	<sql id="insertSql">
 		insert into students(stud_id, name, email, phone, dob)
-		value(#{studId}, #{name}, #{email}, #{phone}, #{dob})
+		values(#{studId}, #{name}, #{email}, #{phone}, #{dob})
 	</sql>
 
-<<<<<<< HEAD
-	<select id="selectStudentByNo" parameterType="Student" resultType="Student">
-		<include refid="selectSql"/>
-		<include refid="whereSql"/>
-		<!-- SELECT stud_id, name, email, phone FROM students where stud_id = #{studId}; -->
-	</select>
-	
-	<select id="selectStudentByAll" resultType="Student">
-		<include refid="selectSql"/>
-		<!-- SELECT stud_id, name, email, phone FROM students; -->
-	</select>
-	
 	<insert id="insertStudent" parameterType="Student">
-		<include refid="insertSql"/>
+		<include refid="insertSql" />
 	</insert>
-	
+
+	<!-- update -->
+	<sql id="updateSql">
+		update students set name=#{name}, email=#{email}, phone=#{phone}, dob=#{dob} 
+	</sql>
 	<update id="updateStudent" parameterType="Student">
-		update students set name=#{name}, email=#{email}, phone=#{phone}, dob=#{dob}
-		where stud_Id = #{studId}
-	</update>
-	
-	<delete id="deleteStudent" parameterType="int">
-		delete from students where stud_id=#{studId}
-	</delete>
-	
-=======
-	<select id="selectStudentByNoWidthAPI" parameterType="Student" resultType="Student">
-		<include refid="selectSql"/>
+		<include refid="updateSql"/>
 		<include refid="whereSql"/>
-	</select>
-	
-	<select id="selectStudentByAllWidthAPI" parameterType="Student" resultType="Student">
-		<include refid="selectSql"/>
-	</select>
-	
-	<insert id="insertStudentWidthAPI" parameterType="Student">
-		<include refid="insertSql"/>
-	</insert>
-	
-	<update id="updateStudnetWithAPI" parameterType="Student">
-		update students set name=#{name}, email=#{email}, phone=#{phone}, dob=#{dob}
-		where stud_id=#{studId}
 	</update>
-	
-	<delete id="deleteStudentWithAPI" parameterType="int">
+	<!-- delete -->
+	<sql id="deleteSql">
 		delete from students where stud_id=#{studId}
+	</sql>
+	<delete id="deleteStudent" parameterType="int">
+		<include refid="deleteSql"/>
 	</delete>
 	
 	<sql id="selectSql2">
-		select stud_id studId, name, email, dob from students
+		SELECT stud_id, name, email, phone, dob FROM students
 	</sql>
-	<!-- ResultMap을 이용 -->
+	
+	<!-- ResultMap 을 이용 -->
 	<resultMap type="Student" id="StudentResult">
 		<id property="studId" column="stud_id"/>
 		<result property="name" column="name"/>
@@ -80,11 +67,12 @@
 	</resultMap>
 	
 	<select id="selectStudentByAllForResultMap" resultMap="StudentResult">
-		<include refid="selectSql2"></include>
+		<include refid="selectSql2"/>
 	</select>
 	
-	<select id="selectStudentByAllForResultMapWithApi" resultMap="StudentResult">
-		<include refid="selectSql2"></include>
+	<select id="selectStudentByAllForHashMap" resultType="map">
+		<include refid="selectSql2"/>
 	</select>
->>>>>>> refs/heads/hotfix_mapResult
 </mapper>
+
+
