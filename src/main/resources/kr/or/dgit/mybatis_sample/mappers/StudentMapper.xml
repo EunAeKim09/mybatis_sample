@@ -19,6 +19,7 @@
 		value(#{studId}, #{name}, #{email}, #{phone}, #{dob})
 	</sql>
 
+<<<<<<< HEAD
 	<select id="selectStudentByNo" parameterType="Student" resultType="Student">
 		<include refid="selectSql"/>
 		<include refid="whereSql"/>
@@ -43,4 +44,47 @@
 		delete from students where stud_id=#{studId}
 	</delete>
 	
+=======
+	<select id="selectStudentByNoWidthAPI" parameterType="Student" resultType="Student">
+		<include refid="selectSql"/>
+		<include refid="whereSql"/>
+	</select>
+	
+	<select id="selectStudentByAllWidthAPI" parameterType="Student" resultType="Student">
+		<include refid="selectSql"/>
+	</select>
+	
+	<insert id="insertStudentWidthAPI" parameterType="Student">
+		<include refid="insertSql"/>
+	</insert>
+	
+	<update id="updateStudnetWithAPI" parameterType="Student">
+		update students set name=#{name}, email=#{email}, phone=#{phone}, dob=#{dob}
+		where stud_id=#{studId}
+	</update>
+	
+	<delete id="deleteStudentWithAPI" parameterType="int">
+		delete from students where stud_id=#{studId}
+	</delete>
+	
+	<sql id="selectSql2">
+		select stud_id studId, name, email, dob from students
+	</sql>
+	<!-- ResultMap을 이용 -->
+	<resultMap type="Student" id="StudentResult">
+		<id property="studId" column="stud_id"/>
+		<result property="name" column="name"/>
+		<result property="email" column="email"/>
+		<result property="phone" column="phone"/>
+		<result property="dob" column="dob"/>
+	</resultMap>
+	
+	<select id="selectStudentByAllForResultMap" resultMap="StudentResult">
+		<include refid="selectSql2"></include>
+	</select>
+	
+	<select id="selectStudentByAllForResultMapWithApi" resultMap="StudentResult">
+		<include refid="selectSql2"></include>
+	</select>
+>>>>>>> refs/heads/hotfix_mapResult
 </mapper>

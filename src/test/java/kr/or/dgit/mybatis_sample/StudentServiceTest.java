@@ -32,6 +32,7 @@ public class StudentServiceTest {
 	}
 
 	@Test
+<<<<<<< HEAD
 	public void test1FindStudentByNo() {
 		Student student = new Student();
 		student.setStudId(1);
@@ -68,7 +69,31 @@ public class StudentServiceTest {
 		student.setEmail("test@test.co.kr");
 		student.setPhone(new PhoneNumber("987-654-3211"));
 		student.setDob(new Date());
+=======
+	public void test1FindStudentByNoWidthAPI() {
+		Student student = new Student();
+		student.setStudId(1);
 		
+		Student selectStudent = service.findStudentByNoWidthAPI(student);
+		Assert.assertEquals(student.getStudId(), selectStudent.getStudId());
+	}
+	
+	@Test
+	public void test2FindStudentByAllWidthAPI() {
+		List<Student> listStd = service.selectStudentByAllWidthAPI();
+		Assert.assertNotNull(listStd);
+		for(Student std : listStd) {
+			System.out.println(std);
+		}
+	}
+	
+	@Test
+	public void test3insertStudentWidthAPI() {
+		Calendar newDate = GregorianCalendar.getInstance();
+		newDate.set(1990, 3, 28);
+>>>>>>> refs/heads/hotfix_mapResult
+		
+<<<<<<< HEAD
 		int result = StudentService.updateStudent(student);
 		Assert.assertSame(1, result);
 		
@@ -83,5 +108,44 @@ public class StudentServiceTest {
 	public void test5deleteStudent() {
 		int deleteStudent = StudentService.deleteStudent(3);
 		Assert.assertSame(1, deleteStudent);
+=======
+		Student student = 
+				new Student(3, "홍길동4", "lee@test.co.kr", newDate.getTime(), new PhoneNumber("010-1234-1234"));
+		int res = service.insertStudentWidthAPI(student);
+		Assert.assertEquals(1, res);
+>>>>>>> refs/heads/hotfix_mapResult
+	}
+	
+	@Test
+	public void test4updateStudnetWithAPI() {
+		Student student = new Student();
+		student.setStudId(1);
+		student.setName("Timothy");
+		student.setEmail("test@test.co.kr");
+		student.setPhone(new PhoneNumber("987-654-3211"));
+		student.setDob(new Date());
+		
+		int result = StudentService.updateStudnetWithAPI(student);
+		Assert.assertSame(1, result);
+		
+		student.setEmail("timothy@gmail.com");
+		student.setPhone(new PhoneNumber("123-123-1234"));
+		student.setDob(new GregorianCalendar(1988,04,25).getTime());
+		
+		result = StudentService.updateStudnetWithAPI(student);
+		Assert.assertSame(1, result);
+	}
+	
+	@Test
+	public void test5deleteStudentWithApI() {
+		int deleteStudent = StudentService.deleteStudentWithApI(3);
+		Assert.assertSame(1, deleteStudent);
+	}
+	
+	@Test
+	public void gTestselectStudentByAllForResultMap() {
+		List<Student> listStds = StudentService.selectStudentByAllForResultMap();
+		List<Student> listStds2 = StudentService.selectStudentByAllWidthAPI();
+		Assert.assertEquals(listStds.size(), listStds2.size());
 	}
 }
