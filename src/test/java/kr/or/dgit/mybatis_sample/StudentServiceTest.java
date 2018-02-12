@@ -105,4 +105,21 @@ public class StudentServiceTest {
 		}
 	}
 	
+	@Test
+	public void test8SelectStudentByForResultMapExtends() {
+		Student student = new Student();
+		student.setStudId(1);
+		
+		Student extStd = service.selectStudentByForResultMapExtends(student);
+		Assert.assertEquals(extStd.getStudId(), 1);
+	}
+	
+	@Test
+	public void test9SelectStudentByNoAssociation() {
+		Student searchstudent = new Student(1);
+		
+		Student extStd = service.selectStudentByNoAssociation(searchstudent);
+		Assert.assertEquals(extStd.getStudId(), 1);
+	}
+	
 }

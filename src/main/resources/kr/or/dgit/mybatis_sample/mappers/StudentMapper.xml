@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.or.dgit.mybatis_sample_teacher.dao.StudentDao">
+<mapper namespace="kr.or.dgit.mybatis_sample.dao.StudentDao">
 
 	<sql id="selectSql">
 		SELECT stud_id, name, email, phone FROM students
@@ -66,12 +66,42 @@
 		<result property="dob" column="dob"/>
 	</resultMap>
 	
+	<resultMap type="Student" id="StudentWithAddressResult" extends="StudentResult">
+		<result property="address.addrId" column="addr_id"/>
+		<result property="address.street" column="street"/>
+		<result property="address.city" column="city"/>
+		<result property="address.state" column="state"/>
+		<result property="address.zip" column="zip"/>
+		<result property="address.country" column="country"/>
+	</resultMap>
+	
+	<sql id="selectJoinAddressSql">
+		select stud_id, name, email, phone, a.addr_id, street, city, state, zip, country
+		from students s left outer join addresses a on s.addr_id=a.addr_id
+	</sql>
+	
+	<select id="selectStudentByForResultMapExtends" parameterType="Student"
+		resultMap="StudentWithAddressResult">
+		<include refid="selectJoinAddressSql"/>
+		<include refid="whereSql"/>	
+	</select>
+	
 	<select id="selectStudentByAllForResultMap" resultMap="StudentResult">
 		<include refid="selectSql2"/>
 	</select>
 	
 	<select id="selectStudentByAllForHashMap" resultType="map">
 		<include refid="selectSql2"/>
+	</select>
+	
+	<resultMap type="Student" id="StudentAssocication" extends="StudentResult">
+		<association property="address" 
+		resultMap="kr.or.dgit.mybatis_sample.dao.AddressDao.AddressResult"/>
+	</resultMap>
+	
+	<select id="selectStudentByNoAssociation" parameterType="Student" resultMap="StudentAssocication">
+		<include refid="selectJoinAddressSql"/>
+		<include refid="whereSql"></include>
 	</select>
 </mapper>
 

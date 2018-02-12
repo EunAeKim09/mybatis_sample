@@ -13,6 +13,10 @@ public interface StudentDao {
 	List<Student> selectStudentByAllForResultMap();
 	List<Map<String, Object>> selectStudentByAllForHashMap();
 	
+	Student selectStudentByForResultMapExtends(Student student);
+	
+	Student selectStudentByNoAssociation(Student student);
+	
 	//insert
 	int insertStudent(Student student);
 	//update
