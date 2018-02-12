@@ -21,7 +21,7 @@ public class StudentService {
 		}
 	}
 	
-	public List<Student> selectStudentByAllWidthAPI() {
+	public static List<Student> selectStudentByAllWidthAPI() {
 		log.debug("selectStudentByAllWidthAPI()");
 		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
 			return sqlSession.selectList(namespace+"selectStudentByAllWidthAPI");
@@ -67,6 +67,13 @@ public class StudentService {
 			throw new RuntimeException(e.getCause());
 		}finally {
 			sqlSession.close();
+		}
+	}
+	
+	public static List<Student> selectStudentByAllForResultMap(){
+		log.debug("selectStudentByAllForResultMap()");
+		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
+			return sqlSession.selectList(namespace+"selectStudentByAllForResultMap");
 		}
 	}
 }

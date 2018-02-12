@@ -14,4 +14,8 @@ public interface StudentDao {
 	int updateStudnetWithAPI(Student student);
 	//delete
 	int deleteStudentWithAPI(int id);
+	
+
+	List<Student> selectStudentByAllForResultMap();
+	List<Student> selectStudentByAllForResultMapWithApi();
 }

@@ -85,4 +85,11 @@ public class StudentServiceTest {
 		int deleteStudent = StudentService.deleteStudentWithApI(3);
 		Assert.assertSame(1, deleteStudent);
 	}
+	
+	@Test
+	public void gTestselectStudentByAllForResultMap() {
+		List<Student> listStds = StudentService.selectStudentByAllForResultMap();
+		List<Student> listStds2 = StudentService.selectStudentByAllWidthAPI();
+		Assert.assertEquals(listStds.size(), listStds2.size());
+	}
 }
