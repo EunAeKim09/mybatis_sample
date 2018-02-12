@@ -3,7 +3,7 @@
 <mapper namespace="kr.or.dgit.mybatis_sample.dao.StudentDao">
 
 	<sql id="selectSql">
-		SELECT stud_id, name, email, phone FROM students
+		SELECT stud_id, name, email, phone, dob FROM students
 	</sql>
 	
 	<sql id="whereSql">
@@ -40,4 +40,21 @@
 	<delete id="deleteStudentWithAPI" parameterType="int">
 		delete from students where stud_id=#{studId}
 	</delete>
+	
+	<!-- ResultMap 을 이용 -->
+	<resultMap type="Student" id="StudentResult">
+		<id property="studId" column="stud_id"/>
+		<result property="name" column="name"/>
+		<result property="email" column="email"/>
+		<result property="phone" column="phone"/>
+		<result property="dob" column="dob"/>
+	</resultMap>
+	
+	<select id="selectStudentByAllForResultMapWithAPI" resultMap="StudentResult">
+		<include refid="selectSql"/>
+	</select>
+	
+	<select id="selectStudentByAllForHashMapWithAPI" resultType="map">
+		<include refid="selectSql"/>
+	</select>
 </mapper>
