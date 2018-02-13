@@ -2,17 +2,19 @@ package kr.or.dgit.mybatis_sample.dto;
 
 import java.util.List;
 
-public class Tutors {
-	private int tutor_id;
+public class Tutor {
+	private int tutorId;
 	private String name;
 	private String email;
 	private Address address;
 	private List<Course> courses;
-	public int getTutor_id() {
-		return tutor_id;
+	
+	
+	public int getTutorId() {
+		return tutorId;
 	}
-	public void setTutor_id(int tutor_id) {
-		this.tutor_id = tutor_id;
+	public void setTutorId(int tutorId) {
+		this.tutorId = tutorId;
 	}
 	public String getName() {
 		return name;
@@ -41,7 +43,7 @@ public class Tutors {
 	@Override
 	public String toString() {
 		return String.format("Tutors [%s, %s, %s, %s, %s]", 
-				tutor_id, name, email, address, courses);
+				tutorId, name, email, address, courses);
 	}
 	
 	

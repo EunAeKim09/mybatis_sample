@@ -3,17 +3,18 @@ package kr.or.dgit.mybatis_sample.dto;
 import java.util.Date;
 
 public class Course {
-	private int corse_id;
+	private int courseId;
 	private String name;
 	private String description;
 	private Date start_date;
 	private Date end_date;
 	private int tutor_id;
+	
 	public int getCorse_id() {
-		return corse_id;
+		return courseId;
 	}
 	public void setCorse_id(int corse_id) {
-		this.corse_id = corse_id;
+		this.courseId = corse_id;
 	}
 	public String getName() {
 		return name;
@@ -48,7 +49,7 @@ public class Course {
 	@Override
 	public String toString() {
 		return String.format("Course [%s, %s, %s, %s, %s, %s]",
-				corse_id, name, description, start_date, end_date, tutor_id);
+				courseId, name, description, start_date, end_date, tutor_id);
 	}
 	
 	
