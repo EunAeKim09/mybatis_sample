@@ -15,8 +15,8 @@
 	</sql>
 	
 	<sql id="insertSql">
-		insert into students(stud_id, name, email, phone, dob)
-		value(#{studId}, #{name}, #{email}, #{phone}, #{dob})
+		insert into students(stud_id, name, email, phone, dob, gender)
+		value(#{studId}, #{name}, #{email}, #{phone}, #{dob}, #{gender})
 	</sql>
 
 	<select id="selectStudentByNoWidthAPI" parameterType="Student" resultType="Student">
@@ -30,6 +30,10 @@
 	
 	<insert id="insertStudentWidthAPI" parameterType="Student">
 		<include refid="insertSql"/>
+	</insert>
+	
+	<insert id="insertEnumStudentWithAPI" parameterType="Student">
+		<include refid="insertSql"></include>
 	</insert>
 	
 	<update id="updateStudnetWithAPI" parameterType="Student">

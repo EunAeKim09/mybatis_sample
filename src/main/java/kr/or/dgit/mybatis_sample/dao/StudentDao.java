@@ -20,6 +20,7 @@ public interface StudentDao {
 	
 	//insert
 	int insertStudentWidthAPI(Student student);
+	int insertEnumStudentWithAPI(Student student);
 	//update
 	int updateStudnetWithAPI(Student student);
 	//delete
