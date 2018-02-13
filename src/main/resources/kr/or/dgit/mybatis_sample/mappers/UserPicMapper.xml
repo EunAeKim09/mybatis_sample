@@ -14,7 +14,7 @@
 		values(#{name}, #{pic}, #{bio})
 	</insert>
 	
-	<select id="getUserPicWithAPI" resultMap="UserPicResult">
+	<select id="getUserPicWithAPI" parameterType="int" resultMap="UserPicResult">
 		select * from user_pics where id = #{id}
 	</select>
 </mapper>
