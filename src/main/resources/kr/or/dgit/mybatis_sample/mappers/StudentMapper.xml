@@ -103,6 +103,17 @@
 		<include refid="selectJoinAddressSql"/>
 		<include refid="whereSql"></include>
 	</select>
+	
+	<!-- enum 타입 다루기 -->
+	<sql id="insertEnumSal">
+		insert into students(stud_id, name, email, phone, dob, gender)
+		values(#{studId}, #{name}, #{email}, #{phone}, #{dob}, #{gender})
+	</sql>
+	
+	<insert id="insertEnumStudent" parameterType="Student">
+		<include refid="insertEnumSal"></include>
+	</insert>
+	
 </mapper>
 
 
