@@ -109,5 +109,20 @@ public class StudentServiceTest {
 		}
 	}
 	
+	@Test
+	public void test8SelectStudentByNoForResultExtendsWithAPI() {
+		Student searchStd = new Student();
+		searchStd.setStudId(1);
+		Student student = service.selectStudentByNoForResultExtendsWithAPI(searchStd);
+		Assert.assertNotNull(student);
+		System.out.println(student);
+	}
 	
+	@Test
+	public void test9selectStudentByNoAssociation() {
+		Student searchStd = new Student(1);
+		Student student = service.selectStudentByNoAssociation(searchStd);
+		Assert.assertNotNull(student);
+		System.out.println(student);
+	}
 }

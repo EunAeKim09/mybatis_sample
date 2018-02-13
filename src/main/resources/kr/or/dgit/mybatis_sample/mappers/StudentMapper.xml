@@ -57,4 +57,32 @@
 	<select id="selectStudentByAllForHashMapWithAPI" resultType="map">
 		<include refid="selectSql"/>
 	</select>
+	
+	<resultMap type="Student" id="StudentWithAddressResult" extends="StudentResult">
+		<result property="address.addrId" column="addr_id"/>
+		<result property="address.street" column="street"/>
+		<result property="address.city" column="city"/>
+		<result property="address.state" column="state"/>
+		<result property="address.zip" column="zip"/>
+		<result property="address.country" column="country"/>
+	</resultMap>
+	
+	<sql id="selectJoinAddressSql">
+		select stud_id, name, email, phone, a.addr_id, street, city, state, zip, country
+		from students s left outer join addresses a on s.addr_id=a.addr_id
+	</sql>
+	
+	<select id="selectStudentByNoForResultExtendsWithAPI" resultType="Student">
+		<include refid="selectJoinAddressSql"/>
+		<include refid="whereSql"/>
+	</select>
+	
+	<resultMap type="Student" id="StudentAssociation" extends="StudentResult">
+		<association property="address" resultMap="kr.or.dgit.mybatis_sample.dao.AddressDao.AddressResult"/>
+	</resultMap>
+	
+	<select id="selectStudentByNoAssociation" parameterType="Student" resultMap="StudentAssociation">
+		<include refid="selectJoinAddressSql"/>
+		<include refid="whereSql"/>
+	</select>
 </mapper>

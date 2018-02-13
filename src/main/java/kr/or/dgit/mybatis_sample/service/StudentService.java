@@ -84,4 +84,18 @@ public class StudentService {
 			return sqlSession.selectList(namespace+"selectStudentByAllForHashMapWithAPI");
 		}
 	}
+	
+	public Student selectStudentByNoForResultExtendsWithAPI(Student student) {
+		log.debug("selectStudentByNoForResultExtendsWithAPI()");
+		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
+			return sqlSession.selectOne(namespace+"selectStudentByNoForResultExtendsWithAPI", student);
+		}
+	}
+	
+	public Student selectStudentByNoAssociation(Student student) {
+		log.debug("selectStudentByNoAssociation()");
+		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
+			return sqlSession.selectOne(namespace+"selectStudentByNoAssociation", student);
+		}
+	}
 }
