@@ -30,7 +30,9 @@ public class TutorServiceTest {
 		tutor.setTutorId(1);
 		
 		Tutor findTutor = service.selectTutorByTutorIdWithAPI(tutor);
-		Assert.assertEquals(tutor.getTutorId(), 1);
+		Assert.assertEquals(tutor.getTutorId(), findTutor.getTutorId());
+		
+		System.out.println(findTutor);
 	}
 
 }
