@@ -53,7 +53,7 @@ public class StudentServiceTest {
 		}
 	}
 	
-	@Test
+	/*@Test
 	public void test3insertStudentWidthAPI() {
 		Calendar newDate = GregorianCalendar.getInstance();
 		newDate.set(1990, 3, 28);
@@ -62,7 +62,7 @@ public class StudentServiceTest {
 				new Student(3, "홍길동4", "lee@test.co.kr", newDate.getTime(), new PhoneNumber("010-1234-1234"));
 		int res = service.insertStudentWidthAPI(student);
 		Assert.assertEquals(1, res);
-	}
+	}*/
 	
 	@Test
 	public void test4updateStudnetWithAPI() {
