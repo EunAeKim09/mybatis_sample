@@ -11,7 +11,6 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import kr.or.dgit.mybatis_sample.dto.Address;
-import kr.or.dgit.mybatis_sample.dto.Student;
 import kr.or.dgit.mybatis_sample.service.AddressService;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
