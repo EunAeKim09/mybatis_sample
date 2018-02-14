@@ -89,4 +89,51 @@
 		<include refid="selectJoinAddressSql"/>
 		<include refid="whereSql"/>
 	</select>
+	
+	<!-- 여러개의 파라미터 전달하기 -->
+	
+	<resultMap type="Student" id="StudentGenderResult" extends="StudentResult">
+		<result property="gender" column="gender"/>
+	</resultMap>
+	
+	<sql id="selectParameterSql">
+		select stud_id, name, email, phone, dob, gender from students
+	</sql>	
+	
+	<sql id="whereNameEmailSql">
+		<where>
+			<if test="name != null">
+				name = #{name}
+			</if>
+			<if test="email != null">
+				and email = #{email}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectAllStudentByParamWithAPI" resultMap = "StudentGenderResult">
+		<include refid="selectParameterSql"/>
+		where name = #{param1} and email = #{param2}
+	</select>
+	
+	<select id="selectAllStudentByStudentWithAPI" parameterType="Student" resultMap="StudentResult">
+		<include refid="selectParameterSql"/>
+		<include refid="whereNameEmailSql"/>
+	</select>
+	
+	<select id="selectAllStudentByMapWithAPI" parameterType="map" resultMap="StudentResult">
+		<include refid="selectParameterSql"/>
+		<include refid="whereNameEmailSql"/>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

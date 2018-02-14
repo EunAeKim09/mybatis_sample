@@ -18,6 +18,10 @@ public interface StudentDao {
 	
 	Student selectStudentByNoAssociation(Student student);
 	
+	Student selectAllStudentByParamWithAPI(String name, String email);
+	Student selectAllStudentByStudentWithAPI(Student student);
+	Student selectAllStudentByMapWithAPI(Map<String, String> map);
+	
 	//insert
 	int insertStudentWidthAPI(Student student);
 	int insertEnumStudentWithAPI(Student student);
