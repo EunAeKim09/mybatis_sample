@@ -1,6 +1,8 @@
 package kr.or.dgit.mybatis_sample;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.junit.AfterClass;
@@ -11,6 +13,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import kr.or.dgit.mybatis_sample.dto.Address;
+import kr.or.dgit.mybatis_sample.dto.Student;
 import kr.or.dgit.mybatis_sample.service.AddressService;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -36,6 +39,15 @@ public class AddressServiceTest {
 		for (Address add : listAdd) {
 			System.out.println(add);
 		}
+	}
+	
+	@Test
+	public void test2selectAddressLimitByAllWithAPI() {
+		Map<String, Integer> maps = new HashMap<>();
+		maps.put("offset", 3);
+		maps.put("limit", 3);
+		List<Address> listAdd = service.selectAddressLimitByAllWithAPI(maps);
+		Assert.assertNotNull(listAdd);
 	}
 
 }
