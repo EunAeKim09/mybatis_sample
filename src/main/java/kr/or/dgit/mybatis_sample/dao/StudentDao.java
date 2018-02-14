@@ -29,4 +29,7 @@ public interface StudentDao {
 	int updateStudnetWithAPI(Student student);
 	//delete
 	int deleteStudentWithAPI(int id);
+	
+	//ResultSet 처리방식의 재정의
+	Map<Integer, String> selectStudentForMapWithAPI();
 }

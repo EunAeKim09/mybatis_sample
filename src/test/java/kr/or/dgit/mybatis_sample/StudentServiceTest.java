@@ -129,7 +129,7 @@ public class StudentServiceTest {
 	}
 	
 	@Test
-	public void testFinsertEnumStudentWithAPI() {
+	public void testF0insertEnumStudentWithAPI() {
 		Calendar newDate = GregorianCalendar.getInstance();
 		newDate.set(1990, 3, 28);
 		
@@ -158,5 +158,15 @@ public class StudentServiceTest {
 		maps.put("email", "Timothy@gmail.com");
 		Student student = service.selectAllStudentByMapWithAPI(maps);
 		Assert.assertNotNull(student);
+	}
+	
+	@Test
+	public void testF3SelectStudentForMapWithAPI() {
+		Map<Integer, String> maps = service.selectStudentForMapWithAPI();
+		Assert.assertNotNull(maps);
+		
+		for(Entry<Integer, String>entry : maps.entrySet()){
+			System.out.printf("key(%s) - value(%s)%n", entry.getKey(), entry.getValue());
+		}
 	}
 }
