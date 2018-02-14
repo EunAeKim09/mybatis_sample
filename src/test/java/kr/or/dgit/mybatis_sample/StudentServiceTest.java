@@ -169,4 +169,21 @@ public class StudentServiceTest {
 			System.out.printf("key(%s) - value(%s)%n", entry.getKey(), entry.getValue());
 		}
 	}
+	
+	@Test
+	public void testF4updateSetStudentWithAPI() {
+		Student student = new Student();
+		student.setStudId(1);
+		student.setPhone(new PhoneNumber("987-654-3211"));
+		student.setDob(new Date());
+		
+		int result = service.updateSetStudentWithAPI(student);
+		Assert.assertSame(1, result);
+		
+		student.setPhone(new PhoneNumber("123-123-1234"));
+		student.setDob(new GregorianCalendar(1988,04,25).getTime());
+		
+		result = service.updateSetStudentWithAPI(student);
+		Assert.assertSame(1, result);
+	}
 }

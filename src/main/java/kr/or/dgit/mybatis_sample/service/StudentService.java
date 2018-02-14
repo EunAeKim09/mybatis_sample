@@ -15,118 +15,118 @@ import kr.or.dgit.mybatis_sample.util.MyBatisSqlSessionFactory;
 
 public class StudentService {
 	private static final Log log = LogFactory.getLog(StudentService.class);
-	
+
 	private static String namespace = "kr.or.dgit.mybatis_sample.dao.StudentDao.";
-	
+
 	public Student findStudentByNoWidthAPI(Student student) {
 		log.debug("selectStudentByNoWidthAPI()");
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			return sqlSession.selectOne(namespace+"selectStudentByNoWidthAPI", student);
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + "selectStudentByNoWidthAPI", student);
 		}
 	}
-	
+
 	public List<Student> selectStudentByAllWidthAPI() {
 		log.debug("selectStudentByAllWidthAPI()");
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			return sqlSession.selectList(namespace+"selectStudentByAllWidthAPI");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectStudentByAllWidthAPI");
 		}
 	}
-	
+
 	public int insertEnumStudentWithAPI(Student student) {
 		log.debug("insertEnumStudentWithAPI()");
-		int res=-1;
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			res=sqlSession.insert(namespace+"insertEnumStudentWithAPI", student);
+		int res = -1;
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			res = sqlSession.insert(namespace + "insertEnumStudentWithAPI", student);
 			sqlSession.commit();
 		}
 		return res;
 	}
-	
+
 	public int insertStudentWidthAPI(Student student) {
 		log.debug("insertStudentWidthAPI()");
-		int res=-1;
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			res=sqlSession.insert(namespace+"insertStudentWidthAPI", student);
+		int res = -1;
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			res = sqlSession.insert(namespace + "insertStudentWidthAPI", student);
 			sqlSession.commit();
 		}
 		return res;
 	}
-	
+
 	public static int updateStudnetWithAPI(Student student) {
 		log.debug("updateStudnetWithAPI()");
 		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
-		try{
-			int res=sqlSession.update(namespace+"updateStudnetWithAPI", student);
+		try {
+			int res = sqlSession.update(namespace + "updateStudnetWithAPI", student);
 			sqlSession.commit();
 			return res;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			sqlSession.rollback();
 			e.printStackTrace();
 			throw new RuntimeException();
-		}finally {
+		} finally {
 			sqlSession.close();
 		}
 	}
-	
+
 	public static int deleteStudentWithApI(int id) {
 		log.debug("deleteStudentWithApI()");
 		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
-		try{
-			int res=sqlSession.delete(namespace+"deleteStudentWithAPI", id);
+		try {
+			int res = sqlSession.delete(namespace + "deleteStudentWithAPI", id);
 			sqlSession.commit();
 			return res;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			sqlSession.rollback();
 			e.printStackTrace();
 			throw new RuntimeException(e.getCause());
-		}finally {
+		} finally {
 			sqlSession.close();
 		}
 	}
-	
+
 	public List<Student> selectStudentByAllForResultMapWithAPI() {
 		log.debug("selectStudentByAllForResultMapWithAPI()");
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			return sqlSession.selectList(namespace+"selectStudentByAllForResultMapWithAPI");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectStudentByAllForResultMapWithAPI");
 		}
 	}
-	
+
 	public List<Map<String, Object>> selectStudentByAllForHashMapWithAPI() {
 		log.debug("selectStudentByAllForHashMapWithAPI()");
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			return sqlSession.selectList(namespace+"selectStudentByAllForHashMapWithAPI");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectStudentByAllForHashMapWithAPI");
 		}
 	}
-	
+
 	public Student selectStudentByNoForResultExtendsWithAPI(Student student) {
 		log.debug("selectStudentByNoForResultExtendsWithAPI()");
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			return sqlSession.selectOne(namespace+"selectStudentByNoForResultExtendsWithAPI", student);
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + "selectStudentByNoForResultExtendsWithAPI", student);
 		}
 	}
-	
+
 	public Student selectStudentByNoAssociation(Student student) {
 		log.debug("selectStudentByNoAssociation()");
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			return sqlSession.selectOne(namespace+"selectStudentByNoAssociation", student);
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + "selectStudentByNoAssociation", student);
 		}
 	}
 
 	public Student selectAllStudentByStudentWithAPI(Student student) {
 		log.debug("selectAllStudentByStudentWithAPI()");
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			return sqlSession.selectOne(namespace+"selectAllStudentByStudentWithAPI", student);
-		}
-	}
-	
-	public Student selectAllStudentByMapWithAPI(Map<String, String> map) {
-		log.debug("selectAllStudentByMapWithAPI()");
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			return sqlSession.selectOne(namespace+"selectAllStudentByMapWithAPI", map);
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + "selectAllStudentByStudentWithAPI", student);
 		}
 	}
 
-	public Map<Integer, String> selectStudentForMapWithAPI(){
+	public Student selectAllStudentByMapWithAPI(Map<String, String> map) {
+		log.debug("selectAllStudentByMapWithAPI()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + "selectAllStudentByMapWithAPI", map);
+		}
+	}
+
+	public Map<Integer, String> selectStudentForMapWithAPI() {
 		log.debug("selectStudentForMapWithAPI()");
 		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
 		Map<Integer, String> map = new HashMap<>();
@@ -135,17 +135,28 @@ public class StudentService {
 			@Override
 			public void handleResult(ResultContext<? extends Student> resultContext) {
 				Student student = resultContext.getResultObject();
-				map.put(student.getStudId(), student.getName());				
+				map.put(student.getStudId(), student.getName());
 			}
-			
+
 		};
-		sqlSession.select(namespace+"selectAllStudentByMapWithAPI", resultHandler);
+		sqlSession.select(namespace + "selectAllStudentByMapWithAPI", resultHandler);
 		return map;
 	}
 
-
-
-
-
+	public static int updateSetStudentWithAPI(Student student) {
+		log.debug("updateSetStudentWithAPI()");
+		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+		try {
+			int res = sqlSession.update(namespace + "updateSetStudentWithAPI", student);
+			sqlSession.commit();
+			return res;
+		} catch (Exception e) {
+			sqlSession.rollback();
+			e.printStackTrace();
+			throw new RuntimeException(e.getCause());
+		} finally {
+			sqlSession.close();
+		}
+	}
 
 }

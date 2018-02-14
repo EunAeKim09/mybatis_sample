@@ -27,9 +27,13 @@ public interface StudentDao {
 	int insertEnumStudentWithAPI(Student student);
 	//update
 	int updateStudnetWithAPI(Student student);
+	
 	//delete
 	int deleteStudentWithAPI(int id);
 	
 	//ResultSet 처리방식의 재정의
 	Map<Integer, String> selectStudentForMapWithAPI();
+	
+	//set 조건
+	int updateSetStudentWithAPI(Student student);
 }

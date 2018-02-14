@@ -9,5 +9,106 @@
 		<result property="start_date" column="start_date"/>
 		<result property="end_date" column="end_date"/>
 	</resultMap>
+	
+	<!-- if -->
+	<sql id="courseSql">
+		select * from courses
+	</sql>
+	<sql id="whereSql">
+		<where>
+			<if test="name != null">
+				and name like #{name}
+			</if>
+			<if test="start_date != null">
+				and start_date &gt;= #{start_date}
+			</if>
+			<if test="end_date != null">
+				and end_date &lt;= #{end_date}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectCoursesByConditionWithAPI" parameterType="map" resultMap="CourseResult">
+		<include refid="courseSql"/>
+		<include refid="whereSql"/>
+	</select>
 
+	<!-- choose, when, otherwise -->
+	<sql id="chooseSql">
+		<choose>
+			<when test="searchBy == 'Tutor'">
+				where tutor_id = #{tutor_id}
+			</when>
+			<when test="searchBy == 'CourseName'">
+				where name like #{name}
+			</when>
+			<otherwise>
+				where end_date &gt;= now()
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<select id="selectCaseCoursesWithAPI" parameterType="map" resultMap="CourseResult">
+		<include refid="courseSql"/>
+		<include refid="chooseSql"/>
+	</select>
+	
+	<!-- where -->
+	
+	<sql id="whereSql2">
+		<where>
+			<if test="tutor_id != null">
+				tutor_id = ${tutor_id}
+			</if>
+			<if test="name != null">
+				and name like #{name}
+			</if>
+			<if test="start_date != null">
+				and start_date &gt;= #{start_date}
+			</if>
+			<if test="end_date != null">
+				and end_date &lt;= #{end_date}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectWhereCoursesWithAPI" parameterType="map" resultMap="CourseResult">
+		<include refid="courseSql"/>
+		<include refid="whereSql2"/>
+	</select>
+	
+	<!-- trim -->
+	<sql id="whereTrimSql">
+		<trim prefix="where" prefixOverrides="and/or">
+			<if test="tutor_id !=null">
+				tutor_id = #{tutor_id}
+			</if>		
+			<if test="name != null">
+				and name like #{name}
+			</if>
+		</trim>
+	</sql>
+	
+	<select id="selectTrimCoursesWithAPI" parameterType="map" resultMap="CourseResult">
+		<include refid="courseSql"/>
+		<include refid="whereTrimSql"/>
+	</select>
+	
+	<!-- foreach 루프 -->
+	<sql id="foreachSql">
+		<if test="tutorIds != null">
+			<where>
+				tutor_id in
+				<foreach item="tutor_id" collection="tutorIds" index="index" open="(" close=")" separator=",">
+					#{tutor_id}
+				</foreach>
+			</where>
+		</if>
+	</sql>
+	
+	<select id="selectCoursesForeachByTutorsWithAPI" parameterType="map" resultMap="CourseResult">
+		<include refid="courseSql"/>
+		<include refid="foreachSql"/>
+	</select>
+	
 </mapper>
