@@ -3,6 +3,7 @@ package kr.or.dgit.mybatis_sample;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -48,7 +49,7 @@ public class StudentServiceTest {
 		}
 	}
 	
-	@Test
+	/*@Test
 	public void test3CreateStudent() {
 		Calendar newDate = GregorianCalendar.getInstance();
         newDate.set(1990, 2, 28);
@@ -57,7 +58,7 @@ public class StudentServiceTest {
         int res = service.createStudent(student);
         Assert.assertEquals(1, res);
 	}
-	
+	*/
 	@Test
 	public void test4UpdateStudent() {
 		Student student = new Student();
@@ -134,6 +135,30 @@ public class StudentServiceTest {
         Assert.assertEquals(1, res);
         
         System.out.println(student);
+	}
+	
+	@Test
+	public void testF1selectAllStudentByParam() {
+		Student student = service.selectAllStudentByParam("Timothy","Timothy@gmail.com");
+		Assert.assertNotNull(student);
+	}
+	
+	@Test
+	public void testF2selectAllStudentByStudent() {
+		Student std = new Student();
+		std.setName("Timothy");
+		std.setEmail("Timothy@gmail.com");
+		Student student = service.selectAllStudentByStudent(std);
+		Assert.assertNotNull(student);
+	}
+	
+	@Test
+	public void testF3selectAllStudentByMap() {
+		Map<String, String> maps = new HashMap<>();
+		maps.put("name", "Timothy");
+		maps.put("email", "Timothy@gmail.com");
+		Student student = service.selectAllStudentByMap(maps);
+		Assert.assertNotNull(student);
 	}
 	
 }
